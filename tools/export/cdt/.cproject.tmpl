@@ -22,10 +22,10 @@
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.445325914" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.302788810" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1008027188" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+								    <listOptionValue builtIn="false" value="&quot;{{gnu_inc}}/../arm-none-eabi/include&quot;"/>
 									{%- for p in include_paths %}
 									<listOptionValue builtIn="false" value="&quot;{{p}}&quot;"/>
 								    {%- endfor %}
-								    <listOptionValue builtIn="false" value="&quot;{{gnu_inc}}/../arm-none-eabi/include&quot;"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1670933615" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									{%- for symbol in asm_symbols %}
@@ -36,10 +36,10 @@
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.162714252" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1406944528" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+								    <listOptionValue builtIn="false" value="&quot;{{gnu_inc}}/../arm-none-eabi/include&quot;"/>
 									{%- for p in include_paths %}
 									<listOptionValue builtIn="false" value="&quot;{{p}}&quot;"/>
 								    {%- endfor %}
-								    <listOptionValue builtIn="false" value="&quot;{{gnu_inc}}/../arm-none-eabi/include&quot;"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.496389156" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									{%- for symbol in c_symbols %}
@@ -50,10 +50,10 @@
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.460204758" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.867151072" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+			                        <listOptionValue builtIn="false" value="&quot;{{gnu_inc}}/../arm-none-eabi/include&quot;"/>
 									{%- for p in include_paths %}
 									<listOptionValue builtIn="false" value="&quot;{{p}}&quot;"/>
 								    {%- endfor %}
-								    <listOptionValue builtIn="false" value="&quot;{{gnu_inc}}/../arm-none-eabi/include&quot;"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1395532696" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									{%- for symbol in c_symbols %}

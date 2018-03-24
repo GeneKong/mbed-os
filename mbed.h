@@ -116,4 +116,16 @@
 using namespace mbed;
 using namespace std;
 
+#ifndef __MBED_CONFIG_DATA__
+// Some parser need configure macro to work right.
+#include "mbed_config.h"
+#ifndef NULL
+#ifdef __cplusplus
+#define NULL 0
+#else
+#define NULL ((void *)0)
+#endif
+#endif
+
+#endif
 #endif
