@@ -14,8 +14,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-from os.path import splitext, basename, relpath, join, abspath, dirname,\
+from os.path import splitext, basename, join, abspath, dirname,\
     exists
+from posixpath import relpath
 from os import remove
 import sys
 from subprocess import check_output, CalledProcessError, Popen, PIPE
@@ -80,10 +81,7 @@ class Makefile(Exporter):
             'libraries': libraries,
             'ld_sys_libs': sys_libs,
             'hex_files': self.resources.hex_files,
-            'vpath': (["../../.."]
-                      if (basename(dirname(dirname(self.export_dir)))
-                          == "projectfiles")
-                      else [".."]),
+            'vpath': (["../../.."]),
             'cc_cmd': " ".join(["\'" + part + "\'" for part
                                 in ([basename(self.toolchain.cc[0])] +
                                     self.toolchain.cc[1:])]),

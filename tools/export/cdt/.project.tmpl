@@ -24,4 +24,11 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources> {% for file in files %}
+		<link>
+			<name>{{file}}</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/{{file}}</locationURI>
+		</link> {% endfor %}
+	</linkedResources>
 </projectDescription>

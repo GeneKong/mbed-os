@@ -21,7 +21,7 @@ class Eclipse(Makefile):
             'c_symbols': self.toolchain.get_symbols(),
             'asm_symbols': self.toolchain.get_symbols(True),
             'target': self.target,
-            'include_paths': [starting_dot.sub('%s/' % self.project_name, inc) for inc in self.resources.inc_dirs],
+            'include_paths': [starting_dot.sub('', inc) for inc in self.resources.inc_dirs],
             'load_exe': str(self.LOAD_EXE).lower()
         }
 
@@ -35,6 +35,14 @@ class Eclipse(Makefile):
                                                                              project=self.project_name)))
         self.gen_file('cdt/necessary_software.tmpl', ctx,
                       join('eclipse-extras','necessary_software.p2f'))
+
+        ctx['files'] = []
+        for file in self.resources.c_sources:
+            ctx['files'].append(file.strip('./'))
+        for file in self.resources.cpp_sources:
+            ctx['files'].append(file.strip('./'))
+        for file in self.resources.s_sources:
+            ctx['files'].append(file.strip('./'))
 
         self.gen_file('cdt/.cproject.tmpl', ctx, '.cproject')
         self.gen_file('cdt/.project.tmpl', ctx, '.project')

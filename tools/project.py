@@ -251,7 +251,8 @@ def main():
         export(mcu, options.ide, build=options.build,
                src=options.source_dir, macros=options.macros,
                project_id=options.program, zip_proj=zip_proj,
-               build_profile=profile, app_config=options.app_config)
+               build_profile=profile, export_path='export/%s' % options.ide,
+               app_config=options.app_config)
     except NotSupportedException as exc:
         print "[ERROR] %s" % str(exc)
 

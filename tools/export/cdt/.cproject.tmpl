@@ -22,40 +22,40 @@
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.445325914" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.302788810" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1008027188" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									{% for p in include_paths %}
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/{{p}}}&quot;"/>
-								    {% endfor %}
+									{%- for p in include_paths %}
+									<listOptionValue builtIn="false" value="&quot;{{p}}&quot;"/>
+								    {%- endfor %}
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1670933615" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
-									{% for symbol in asm_symbols %}
+									{%- for symbol in asm_symbols %}
                                     <listOptionValue builtIn="false" value="{{symbol}}"/>
-                                    {% endfor %}
+                                    {%- endfor %}
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.775336684" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.162714252" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1406944528" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									{% for p in include_paths %}
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/{{p}}}&quot;"/>
-								    {% endfor %}
+									{%- for p in include_paths %}
+									<listOptionValue builtIn="false" value="&quot;{{p}}&quot;"/>
+								    {%- endfor %}
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.496389156" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
-									{% for symbol in c_symbols %}
+									{%- for symbol in c_symbols %}
                                     <listOptionValue builtIn="false" value="{{symbol}}"/>
-                                    {% endfor %}
+                                    {%- endfor %}
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.869095164" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.460204758" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.867151072" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									{% for p in include_paths %}
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/{{p}}}&quot;"/>
-								    {% endfor %}
+									{%- for p in include_paths %}
+									<listOptionValue builtIn="false" value="&quot;{{p}}&quot;"/>
+								    {%- endfor %}
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1395532696" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
-									{% for symbol in c_symbols %}
+									{%- for symbol in c_symbols %}
                                     <listOptionValue builtIn="false" value="{{symbol}}"/>
-                                    {% endfor %}
+                                    {%- endfor %}
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1704200665" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>

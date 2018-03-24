@@ -301,7 +301,7 @@ LEGACY_IGNORE_DIRS = set([
     'LPC11U24', 'LPC1768', 'LPC2368', 'LPC4088', 'LPC812', 'KL25Z',
     'ARM', 'uARM', 'IAR',
     'GCC_ARM', 'GCC_CS', 'GCC_CR', 'GCC_CW', 'GCC_CW_EWL', 'GCC_CW_NEWLIB',
-    'ARMC6'
+    'ARMC6', 'BUILD'
 ])
 LEGACY_TOOLCHAIN_NAMES = {
     'ARM_STD':'ARM', 'ARM_MICRO': 'uARM',
@@ -714,12 +714,15 @@ class mbedToolchain:
 
             # Add root to include paths
             root = root.rstrip("/")
-            resources.inc_dirs.append(root)
             resources.file_basepath[root] = base_path
 
+            has_header = False
             for file in files:
                 file_path = join(root, file)
-                self._add_file(file_path, resources, base_path)
+                has_header = True if has_header else self._add_file(file_path, resources, base_path)
+
+            if has_header:
+                resources.inc_dirs.append(root)
 
     # A helper function for both scan_resources and _add_dir. _add_file adds one file
     # (*file_path*) to the resources object based on the file type.
@@ -728,7 +731,7 @@ class mbedToolchain:
 
         if self.is_ignored(relpath(file_path, base_path)):
             resources.ignore_dir(relpath(file_path, base_path))
-            return
+            return False
 
         _, ext = splitext(file_path)
         ext = ext.lower()
@@ -744,6 +747,7 @@ class mbedToolchain:
 
         elif ext == '.h' or ext == '.hpp':
             resources.headers.append(file_path)
+            return True
 
         elif ext == '.o':
             resources.objects.append(file_path)
@@ -778,6 +782,7 @@ class mbedToolchain:
         elif ext == '.json':
             resources.json_files.append(file_path)
 
+        return False
 
     def scan_repository(self, path):
         resources = []
