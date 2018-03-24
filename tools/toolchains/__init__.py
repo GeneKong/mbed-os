@@ -716,12 +716,16 @@ class mbedToolchain:
             root = root.rstrip("/")
             resources.file_basepath[root] = base_path
 
-            has_header = False
+            has_header = True if basename(root) in ['inc', 'include'] else False
+            ignore_inc = False
             for file in files:
                 file_path = join(root, file)
-                has_header = True if has_header else self._add_file(file_path, resources, base_path)
+                if self._add_file(file_path, resources, base_path) and not has_header:
+                    has_header = True
+                if file == '__INC_REMOVE__.h':
+                    ignore_inc = True
 
-            if has_header:
+            if has_header and not ignore_inc:
                 resources.inc_dirs.append(root)
 
     # A helper function for both scan_resources and _add_dir. _add_file adds one file

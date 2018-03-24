@@ -1,6 +1,6 @@
 import re
 
-from os.path import join, exists
+from os.path import join, exists, dirname
 from os import makedirs
 
 from tools.export.makefile import Makefile, GccArm, Armc5, IAR
@@ -21,7 +21,7 @@ class Eclipse(Makefile):
             'c_symbols': self.toolchain.get_symbols(),
             'asm_symbols': self.toolchain.get_symbols(True),
             'target': self.target,
-            'include_paths': [starting_dot.sub('', inc) for inc in self.resources.inc_dirs],
+            'include_paths': [starting_dot.sub('../../../', inc) for inc in self.resources.inc_dirs],
             'load_exe': str(self.LOAD_EXE).lower()
         }
 
@@ -44,6 +44,19 @@ class Eclipse(Makefile):
         for file in self.resources.s_sources:
             ctx['files'].append(file.strip('./'))
 
+        for flag in self.toolchain.asm[1:]:
+            if flag.startswith('-D'):
+                ctx['asm_symbols'].append(flag[2:])
+
+        for flag in self.toolchain.cc[1:]:
+            if flag.startswith('-D'):
+                ctx['c_symbols'].append(flag[2:])
+
+        for flag in self.toolchain.cppc[1:]:
+            if flag.startswith('-D'):
+                ctx['c_symbols'].append(flag[2:])
+
+        ctx['gnu_inc'] = dirname(self.toolchain.cc[0])
         self.gen_file('cdt/.cproject.tmpl', ctx, '.cproject')
         self.gen_file('cdt/.project.tmpl', ctx, '.project')
 
