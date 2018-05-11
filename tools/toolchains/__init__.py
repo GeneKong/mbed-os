@@ -659,6 +659,7 @@ class mbedToolchain:
         itself is generated.
         """
         labels = self.get_labels()
+        print(labels)
         for root, dirs, files in walk(path, followlinks=True):
             # Check if folder contains .mbedignore
             if ".mbedignore" in files:
