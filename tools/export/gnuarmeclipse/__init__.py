@@ -230,9 +230,12 @@ class GNUARMEclipse(Exporter):
 
             self.process_options(opts, flags)
 
-            opts['as']['defines'] = self.as_defines
-            opts['c']['defines'] = self.c_defines
-            opts['cpp']['defines'] = self.cpp_defines
+            common_defines = ['__GNUC__']
+            
+            opts['as']['defines'] = self.as_defines + common_defines
+            opts['c']['defines'] = self.c_defines + common_defines
+            opts['cpp']['defines'] = self.cpp_defines + common_defines
+            
 
             opts['common']['include_paths'] = self.include_path
             opts['common']['excluded_folders'] = '|'.join(

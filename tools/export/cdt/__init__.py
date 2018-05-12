@@ -18,12 +18,12 @@ class Eclipse(Makefile):
         ctx = {
             'name': self.project_name,
             'elf_location': join('BUILD',self.project_name)+'.elf',
-            'c_symbols': self.toolchain.get_symbols(),
-            'asm_symbols': self.toolchain.get_symbols(True),
+            'c_symbols': self.toolchain.get_symbols() + self.GLOBAL_SYMBOLS,
+            'asm_symbols': self.toolchain.get_symbols(True) + self.GLOBAL_SYMBOLS,
             'target': self.target,
             'include_paths': [starting_dot.sub('../../../', inc) for inc in self.resources.inc_dirs],
             'load_exe': str(self.LOAD_EXE).lower()
-        }
+        }       
 
         if not exists(join(self.export_dir,'eclipse-extras')):
             makedirs(join(self.export_dir,'eclipse-extras'))
@@ -64,13 +64,22 @@ class Eclipse(Makefile):
 class EclipseGcc(Eclipse, GccArm):
     LOAD_EXE = True
     NAME = "Eclipse-GCC-ARM"
+    GLOBAL_SYMBOLS = [  "__GNUC__",
+                        "___int8_t_defined",
+                        "___int16_t_defined",
+                        "___int32_t_defined",
+                        "___int64_t_defined",
+                        "NULL=0"
+                        ]
 
 class EclipseArmc5(Eclipse, Armc5):
     LOAD_EXE = False
     NAME = "Eclipse-Armc5"
+    GLOBAL_SYMBOLS = ["__CC_ARM"]
 
 class EclipseIAR(Eclipse, IAR):
     LOAD_EXE = True
     NAME = "Eclipse-IAR"
+    GLOBAL_SYMBOLS = ["__ICCARM__"]
 
 
